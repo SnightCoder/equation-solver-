@@ -1,0 +1,84 @@
+<script src="https://cdn.jsdelivr.net/npm/nerdamer@latest/nerdamer.core.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nerdamer@latest/Algebra.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nerdamer@latest/Calculus.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nerdamer@latest/Solve.js"></script>
+
+<script>
+function parseURLParams(url) {
+    var queryStart = url.indexOf("?") + 1,
+        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+        query = url.slice(queryStart, queryEnd - 1),
+        pairs = query.replace(/\+/g, " ").split("&"),
+        parms = {}, i, n, v, nv;
+
+    if (query === url || query === "") return;
+
+    for (i = 0; i < pairs.length; i++) {
+        nv = pairs[i].split("=", 2);
+        n = decodeURIComponent(nv[0]);
+        v = decodeURIComponent(nv[1]);
+
+        if (!parms.hasOwnProperty(n)) parms[n] = [];
+        parms[n].push(nv.length === 2 ? v : null);
+    }
+    return parms;
+}
+	var urlString = window.location.href;
+        urlParams = parseURLParams(urlString);
+	console.log(urlParams);
+	console.log(urlParams['e']);
+	document.write('<a class="equ">'+urlParams['e']+'</a>');
+	var x = nerdamer.solve(urlParams['e'], 'x');
+	console.log(x.toString());
+	document.write('<br>x ∈ <a class="sol">'+x+'</a>');
+</script>
+
+<!-- js without semicolon! 
+<script>
+ var a=1
+function lol(a){
+    a++ 
+    a
+    a++
+    return a
+}
+document.write(('b' + 'a' + + 'a' + 'a').toLowerCase())
+alert("js without semicolon: "+lol(+3))
+</script>
+
+<script>
+    	function gcd(a,b) 
+	{ 
+		return (a % b == 0) ? Math.abs(b) : gcd(b,a%b); 
+	} 
+	
+	// This function checks if integral 
+	// solutions are possible 
+	function isPossible( a,  b,  c) 
+	{ 
+		return (c % gcd(a, b) == 0); 
+	} 
+	
+	
+		// First example 
+		var a = 3, b = 6, c = 9; 
+		if(isPossible(a, b, c)) 
+			console.log( "Possible: "+gcd(a,b)); 
+		else
+			console.log( "Not Possible"); 
+	
+		// Second example 
+		a = 3; b = 6; c = 8; 
+		if(isPossible(a, b, c)) 
+			console.log( "Possible") ; 
+		else
+			console.log( "Not Possible: "+gcd(a,b)); 
+	
+		// Third example 
+		a = 2; b = 5; c = 1; 
+		if(isPossible(a, b, c)) 
+			console.log( "Possible: " +gcd(a,b)); 
+		else
+			console.log( "Not Possible"); 
+</script>
+ -->
